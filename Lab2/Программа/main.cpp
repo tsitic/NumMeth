@@ -2,23 +2,26 @@
 #include <locale.h>
 #include "function.h"
 #include "meth.h"
+const double exactValue = -50.4; // Ð¢Ð¾Ñ‡Ð½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð¸Ð½Ñ‚ÐµÐ³Ñ€Ð°Ð»Ð°
 
 using namespace std;
 int main() {
 	setlocale(LC_CTYPE, "Russian");
 	double a;
 	double b;
-	cout << "Ââåäèòå îáëàñòü îãðàíè÷åíèÿ\na: ";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¾Ð±Ð»Ð°ÑÑ‚ÑŒ Ð¾Ð³Ñ€Ð°Ð½Ð¸Ñ‡ÐµÐ½Ð¸Ñ\na: ";
 	//cin >> a;
 	a = 0;
 	cout << "b: ";
 	//cin >> b;
 	b = 3;
 	double e;
-	cout << "Ââåäèòå òî÷íîñòü e: ";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‚Ð¾Ñ‡Ð½Ð¾ÑÑ‚ÑŒ e: ";
 	//cin >> e;
-	e = 1e-10;
-	double rezult = meth(a, b, e);
-	cout << rezult;
+	e = 1e-1;
+	ret rezult = meth(a, b, e);
+	
+	double error = fabs(rezult.rezult - exactValue); //Ñ‚Ð¾Ñ‡Ð½Ð¾Ðµ Ñ€ÐµÑˆÐµÐ½Ð¸Ðµ 
+	std::cout << "\n" << rezult.k << " " << error << " " << rezult.h << " " << e << std::endl;
 	return 0;
 }
