@@ -2,13 +2,12 @@
 #include <math.h>
 #include <iostream>
 
-const double exactValue = -50.4; // Точное значение интеграла
 
 double rungeRule(double s1, double s2) {
-    return fabs(s2 - s1) / 3;
+    return fabs(s2 - s1);
 }
 
-double meth(double a, double b, double e)
+ret meth(double a, double b, double e)
 {
     int k = 1;
     double h = b - a;
@@ -26,7 +25,7 @@ double meth(double a, double b, double e)
         }
         k++;
     } while (rungeRule(s1, s2) > e);
-    double error = fabs(s1 - exactValue);
-    std::cout<<"\n" << k << " " << error << " " << h << " " << e << std::endl;
-    return s1;
+    ret rez{ s1,k,h };
+    
+    return rez;
 }
