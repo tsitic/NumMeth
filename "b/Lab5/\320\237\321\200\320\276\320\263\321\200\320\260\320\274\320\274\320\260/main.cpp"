@@ -1,0 +1,28 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+
+int main() {
+    std::vector<std::vector<double>> A = {
+        {10.0, -1.0, 2.0},
+        {-1.0, 11.0, -1.0},
+        {2.0, -1.0, 10.0}
+    };
+    std::vector<double> b = {6.0, 25.0, -11.0};
+    std::vector<double> x(3, 0.0), x_prev(3, 0.0);
+    double eps = 1e-6;
+    for (int iter = 0; iter < 1000; ++iter) {
+        x_prev = x;
+        x[0] = (b[0] - A[0][1]*x_prev[1] - A[0][2]*x_prev[2]) / A[0][0];
+        x[1] = (b[1] - A[1][0]*x_prev[0] - A[1][2]*x_prev[2]) / A[1][1];
+        x[2] = (b[2] - A[2][0]*x_prev[0] - A[2][1]*x_prev[1]) / A[2][2];
+        double err = std::max(std::max(std::fabs(x[0]-x_prev[0]), std::fabs(x[1]-x_prev[1])), std::fabs(x[2]-x_prev[2]));
+        if (err < eps) break;
+    }
+    std::cout << "Solution:\n";
+    for (double xi : x) {
+        std::cout << xi << " ";
+    }
+    std::cout << std::endl;
+    return 0;
+}
